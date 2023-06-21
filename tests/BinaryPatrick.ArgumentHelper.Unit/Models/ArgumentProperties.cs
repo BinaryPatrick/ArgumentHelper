@@ -29,3 +29,12 @@ internal class ArgumentProperties
     [OptionalArgument("test-enum-with-default", "This is a test enum value with default")]
     public TestEnum TestEnumsWithDefault { get; set; } = TestEnum.One;
 }
+
+public class AppArguments
+{
+    [RequiredArgument("directory", "This represents a required string value", 0)]
+    public string Directory { get; set; }
+
+    [OptionalArgument("extension", "This represents an optional argument", ShortFlag = "e")]
+    public string? FileExtension { get; set; }
+}

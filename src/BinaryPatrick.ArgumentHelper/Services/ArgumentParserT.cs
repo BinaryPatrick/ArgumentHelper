@@ -9,7 +9,10 @@ internal class ArgumentParser<T> : IArgumentParser<T> where T : class, new()
 {
     private static readonly List<RequiredProperty> requiredProperties = GetRequiredProperties();
     private static readonly List<OptionalProperty> optionalProperties = GetOptionalProperties();
+
     private readonly IConsoleHelper consoleHelper;
+
+    public string? Description { get; set; }
 
     public ArgumentParser(IConsoleHelper consoleHelper)
     {
@@ -24,9 +27,15 @@ internal class ArgumentParser<T> : IArgumentParser<T> where T : class, new()
         return this;
     }
 
+    public IArgumentParser<T> AddDescription(string description)
+    {
+        Description = description;
+        return this;
+    }
+
     public IArgumentParser<T> ShowHelpText()
     {
-        consoleHelper.WriteHelpText<T>(requiredProperties, optionalProperties);
+        consoleHelper.WriteHelpText<T>(Description, requiredProperties, optionalProperties);
         return this;
     }
 
@@ -94,7 +103,7 @@ internal class ArgumentParser<T> : IArgumentParser<T> where T : class, new()
             return;
         }
 
-        consoleHelper.WriteHelpText<T>(requiredProperties, optionalProperties);
+        consoleHelper.WriteHelpText<T>(Description, requiredProperties, optionalProperties);
         throw new HelpFlagException("Help flag argument given");
     }
 
@@ -106,21 +115,21 @@ internal class ArgumentParser<T> : IArgumentParser<T> where T : class, new()
         }
 
         consoleHelper.WriteError("Not all required arguments provided");
-        consoleHelper.WriteHelpText<T>(requiredProperties, optionalProperties);
+        consoleHelper.WriteHelpText<T>(Description, requiredProperties, optionalProperties);
         throw new ArgumentException("Not all required arguments provided");
     }
 
     public void ExitWithParsingError(string error)
     {
         consoleHelper.WriteError(error);
-        consoleHelper.WriteHelpText<T>(requiredProperties, optionalProperties);
+        consoleHelper.WriteHelpText<T>(Description, requiredProperties, optionalProperties);
         throw new ArgumentParsingException(error);
     }
 
     public void ExitWithUnknownArgument(string error)
     {
         consoleHelper.WriteError(error);
-        consoleHelper.WriteHelpText<T>(requiredProperties, optionalProperties);
+        consoleHelper.WriteHelpText<T>(Description, requiredProperties, optionalProperties);
         throw new UnknownArgumentException(error);
     }
 

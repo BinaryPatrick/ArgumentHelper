@@ -5,6 +5,7 @@ using BinaryPatrick.ArgumentHelper.Unit.Models;
 using Xunit;
 
 namespace BinaryPatrick.ArgumentHelper.Unit.UnitTests;
+
 public class ArgumentParserTest
 {
     [Fact]

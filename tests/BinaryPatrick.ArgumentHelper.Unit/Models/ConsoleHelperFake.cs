@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BinaryPatrick.ArgumentHelper.Services;
 
 namespace BinaryPatrick.ArgumentHelper.Unit.Models;
+
 internal class ConsoleHelperFake : ConsoleHelper
 {
     public List<string> Output { get; } = new List<string>();

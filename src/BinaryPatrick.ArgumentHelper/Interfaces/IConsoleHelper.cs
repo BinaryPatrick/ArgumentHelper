@@ -4,7 +4,7 @@ namespace BinaryPatrick.ArgumentHelper.Interfaces;
 
 internal interface IConsoleHelper
 {
-    void WriteHelpText<T>(IEnumerable<RequiredProperty> requiredProperties, IEnumerable<OptionalProperty> optionalProperties) where T : new();
+    void WriteHelpText<T>(string? description, IEnumerable<RequiredProperty> requiredProperties, IEnumerable<OptionalProperty> optionalProperties) where T : new();
 
     void WriteError(string error);
 }
