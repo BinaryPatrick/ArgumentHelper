@@ -1,5 +1,6 @@
-﻿using BinaryPatrick.ArgumentHelper.Attributes;
-using System.Reflection;
+﻿using System.Reflection;
+using BinaryPatrick.ArgumentHelper.Attributes;
+using BinaryPatrick.ArgumentHelper.Extensions;
 
 namespace BinaryPatrick.ArgumentHelper.Models;
 
@@ -16,28 +17,46 @@ internal abstract class BaseProperty<T> where T : ArgumentAttribute
 
     public virtual bool TrySetValue(object obj, string value)
     {
-        if (PropertyInfo.PropertyType.IsEnum)
+        Type? propertyType = PropertyInfo.PropertyType;
+        if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
         {
-            return SaveEnumIfValid(obj, value);
+            propertyType = Nullable.GetUnderlyingType(PropertyInfo.PropertyType);
         }
 
-        if (PropertyInfo.PropertyType.TryParse(value, out object? parsedValue))
+        if (propertyType is null)
         {
-            PropertyInfo.SetValue(obj, parsedValue);
-            return true;
+            return false;
         }
 
-        return false;
+        // Parse Enum
+        if (propertyType.IsEnum)
+        {
+            return SaveEnumIfValid(propertyType, obj, value);
+        }
+
+        // Parse Base Type
+        return SaveValueIfValid(propertyType, obj, value);
     }
 
-    protected bool SaveEnumIfValid(object obj, string value)
+    protected virtual bool SaveValueIfValid(Type propertyType, object obj, string value)
     {
-        if (Enum.TryParse(PropertyInfo.PropertyType, value, true, out object? enumValue))
+        if (!propertyType.TryParse(value, out object? parsedValue))
         {
-            PropertyInfo.SetValue(obj, enumValue);
-            return true;
+            return false;
         }
 
-        return false;
+        PropertyInfo.SetValue(obj, parsedValue);
+        return true;
+    }
+
+    protected virtual bool SaveEnumIfValid(Type propertyType, object obj, string value)
+    {
+        if (!Enum.TryParse(propertyType, value, true, out object? enumValue))
+        {
+            return false;
+        }
+
+        PropertyInfo.SetValue(obj, enumValue);
+        return true;
     }
 }

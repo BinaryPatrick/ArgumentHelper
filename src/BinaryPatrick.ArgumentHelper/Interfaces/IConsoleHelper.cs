@@ -1,7 +1,10 @@
-﻿namespace BinaryPatrick.ArgumentHelper.Interfaces
+﻿using BinaryPatrick.ArgumentHelper.Models;
+
+namespace BinaryPatrick.ArgumentHelper.Interfaces;
+
+internal interface IConsoleHelper
 {
-    public interface IConsoleHelper
-    {
-        void WriteError(string error);
-    }
+    void WriteHelpText<T>(IEnumerable<RequiredProperty> requiredProperties, IEnumerable<OptionalProperty> optionalProperties) where T : new();
+
+    void WriteError(string error);
 }

@@ -1,7 +1,7 @@
-﻿using BinaryPatrick.ArgumentHelper.Models;
-using System.Reflection;
+﻿using System.Reflection;
+using BinaryPatrick.ArgumentHelper.Models;
 
-namespace BinaryPatrick.ArgumentHelper;
+namespace BinaryPatrick.ArgumentHelper.Extensions;
 
 internal static class ArgumentExtensions
 {
@@ -42,4 +42,10 @@ internal static class ArgumentExtensions
         OptionalProperty optionalArgument = new OptionalProperty(propertyInfo, argumentAttribute);
         return optionalArgument;
     }
+
+    public static bool IsNullOrEmpty(this string? value)
+        => string.IsNullOrEmpty(value);
+
+    public static bool HasValue(this string? value)
+        => !string.IsNullOrEmpty(value);
 }

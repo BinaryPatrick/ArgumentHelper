@@ -5,6 +5,12 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryPatrick.ArgumentHelper", "src\BinaryPatrick.ArgumentHelper\BinaryPatrick.ArgumentHelper.csproj", "{C0DBDE55-AF55-4C7E-87F1-493C6E885453}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{175F766F-5329-4DE6-AAF7-35420C975372}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ADA356B0-CEB8-4E7B-83C8-06179A74215B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryPatrick.ArgumentHelper.Unit", "tests\BinaryPatrick.ArgumentHelper.Unit\BinaryPatrick.ArgumentHelper.Unit.csproj", "{641C8E8C-1A79-42B5-9E8B-BE01290E4A73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{C0DBDE55-AF55-4C7E-87F1-493C6E885453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0DBDE55-AF55-4C7E-87F1-493C6E885453}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0DBDE55-AF55-4C7E-87F1-493C6E885453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{641C8E8C-1A79-42B5-9E8B-BE01290E4A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{641C8E8C-1A79-42B5-9E8B-BE01290E4A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{641C8E8C-1A79-42B5-9E8B-BE01290E4A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{641C8E8C-1A79-42B5-9E8B-BE01290E4A73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0DBDE55-AF55-4C7E-87F1-493C6E885453} = {175F766F-5329-4DE6-AAF7-35420C975372}
+		{641C8E8C-1A79-42B5-9E8B-BE01290E4A73} = {ADA356B0-CEB8-4E7B-83C8-06179A74215B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {80B548FB-D1E6-46F2-A96B-E1562A9428D2}

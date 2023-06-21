@@ -14,7 +14,5 @@ public class RequiredArgumentAttribute : ArgumentAttribute
     public uint Order { get; init; } = uint.MaxValue;
 
     internal override bool HasMatchingFlag(string? flag, StringComparison stringComparison = StringComparison.Ordinal)
-    {
-        return IsMatchingString(FullName, flag, stringComparison);
-    }
+        => IsMatchingString(FullName, flag, stringComparison);
 }
