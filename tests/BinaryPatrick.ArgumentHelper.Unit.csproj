@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BinaryPatrick.ArgumentHelper\BinaryPatrick.ArgumentHelper.csproj" />
+    <ProjectReference Include="..\src\BinaryPatrick.ArgumentHelper.csproj" />
   </ItemGroup>
 
 </Project>
